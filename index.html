@@ -82,7 +82,8 @@
             <div id="list">
                 <h3>To do items</h3>
                 <ul id="internalList">
-                    <li>Stuff</li>
+                    <li class="items">Stuff</li>
+                    <li class="items">Another Stuff</li>
                 </ul>
             </div>
         </main>
@@ -90,12 +91,11 @@
         <script src="https://code.jquery.com/jquery-3.3.1.js" integrity="sha256-2Kok7MbOyxpgUVvAk/HJ2jigOSYS2auK4Pfzbm7uH60=" crossorigin="anonymous"></script>
         <script>
             $("#submit").click(function(event){
-                $("ul").append($('<li>').text($("#entryinput").val()))
+                $("ul").append($('<li class="items">').text($("#entryinput").val()))
                 $("#entryinput").val('')
             });
-            $('li').click(function(event){
-                var item = this
-                this.innerHTML = 'beep'
+            $('#internalList').on("click", "li", function(event){
+                alert('what the fuck')
             });
 
         </script>
