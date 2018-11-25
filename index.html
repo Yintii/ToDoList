@@ -3,7 +3,6 @@
         <title>To Do list</title>
         <meta charset="utf-8">
         <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-
         <style>
             html, body{
                 margin: 0;
@@ -84,33 +83,33 @@
         <script src="https://code.jquery.com/jquery-3.3.1.js" integrity="sha256-2Kok7MbOyxpgUVvAk/HJ2jigOSYS2auK4Pfzbm7uH60=" crossorigin="anonymous"></script>
         <script>
 
-            //deletes the parent <li> item of the
-            //todo list and removes it with jQuery
-            function deleteLi(Li){
-                $(Li).parent().parent().remove()
-            }
-            //This adds the completed class to a 
-            //<li> item of the todo list with jQuery
-            function completeLi(Li){
-                $(Li).parent().parent().addClass("completed")
-            }
-
-            //Add items to the to do list
-            $("#submit").click(function(event){
-                $("ul").append($('<li>').text($("#entryinput").val()))
-                //Add the complete and delete buttons to the html of the list
-                //item that is added in the process, to later complete or delete
-                //respectively
-                $(`<div class="todo-btns">
-                            <button class="complete-btn" onclick="completeLi($(this))">Complete</button>
-                            <button class="delete-btn" onclick="deleteLi($(this))">Delete</button>
-                            </div>`).appendTo("li:last-child");//This is the selector making sure it
-                                                               //is being appended to the last addition to
-                                                               //the list as we just added one above in the
-                                                               //same function here
-                //Blank the input box
-                $("#entryinput").val('')
-            });
-        </script>
+                //deletes the parent <li> item of the
+                //todo list and removes it with jQuery
+                function deleteLi(Li){
+                    $(Li).parent().parent().remove()
+                }
+                //This adds the completed class to a 
+                //<li> item of the todo list with jQuery
+                function completeLi(Li){
+                    $(Li).parent().parent().addClass("completed")
+                }
+    
+                //Add items to the to do list
+                $("#submit").click(function(event){
+                    $("ul").append($('<li>').text($("#entryinput").val()))
+                    //Add the complete and delete buttons to the html of the list
+                    //item that is added in the process, to later complete or delete
+                    //respectively
+                    $(`<div class="todo-btns">
+                                <button class="complete-btn" onclick="completeLi($(this))">Complete</button>
+                                <button class="delete-btn" onclick="deleteLi($(this))">Delete</button>
+                                </div>`).appendTo("li:last-child");//This is the selector making sure it
+                                                                   //is being appended to the last addition to
+                                                                   //the list as we just added one above in the
+                                                                   //same function here
+                    //Blank the input box
+                    $("#entryinput").val('')
+                });
+            </script>
     </body>
 </html>
