@@ -27,7 +27,7 @@
             #todo-list{
                 padding: 0 1%;
                 margin: auto;
-                width: 50%;
+                width: 70%;
             }
             #entryinput{
                 border-radius: 5px;
@@ -39,15 +39,32 @@
             }
             ul{
                 padding-left: 0;
+                max-height: 65%;
+                overflow-y: scroll;
             }
             li{
                 list-style: none;
                 background-color: #ccc;
                 border-radius: 25px;
                 padding: 5%;
-                margin-top: 5%;
-                width: 100%;
+                margin: 5% auto;
+                width: 80%;
                 margin-left:0;
+            }
+            .todo-btns{
+                float:right;
+            }
+            .completed{
+                background-color: green;
+            }
+            @media screen and (max-width: 520px){
+                .todo-btns{
+                    float:none;
+                }
+                li{
+                    text-align: center;
+                }
+                
             }
         </style>
     </head>
@@ -60,49 +77,44 @@
             </div>
             <div id="todo-list">
                 <ul id="internalList">
-                    <li class="not-toggled">Stuff</li>
-                    <li class="not-toggled">Another Stuff</li>
+                    <li>Stuff
+                        <div class="todo-btns">
+                            <button class="complete-btn">Complete</button>
+                            <button class="delete-btn">Delete</button>
+                        </div>
+                    </li>
+                    <li>Another Stuff
+                        <div class="todo-btns">
+                            <button class="complete-btn">Complete</button>
+                            <button class="delete-btn">Delete</button>
+                        </div>
+                    </li>
                 </ul>
             </div>
         </main>
 
         <script src="https://code.jquery.com/jquery-3.3.1.js" integrity="sha256-2Kok7MbOyxpgUVvAk/HJ2jigOSYS2auK4Pfzbm7uH60=" crossorigin="anonymous"></script>
         <script>
-
-            todo = []
-
-            //document ready
-            // cannot safely manip dom until it's loaded
-            $(function(){
-                alert("Back to working order")
-            });
-
             //Add items to the to do list
             $("#submit").click(function(event){
                 $("ul").append($('<li>').text($("#entryinput").val()))
+                $(`<div class="todo-btns">
+                            <button class="complete-btn">Complete</button>
+                            <button class="delete-btn">Delete</button>
+                        </div>`).appendTo("li:last-child");
                 $("#entryinput").val('')
             });
 
-            //Function for what to do when a to do item is clicked on
-            $('#internalList').on("click", "li", function(event){
-                this.innerHTML = `<span>
-                                <button class="complete-btn">
-                                    Complete
-                                </button>
-                                <button class="delete-btn">
-                                    Delete
-                                </button>
-                            </span>`
-                    preventDefault()
-            });
 
             //COMPLETED-btn handling
+            //Changes the background color to green
             $('li').on('click', '.complete-btn', function(){
-                alert('You clicked the complete button button')
+                $(this).parent().parent().addClass("completed")
             });
             //DELETE-btn handling
+            //removes the associated list element
             $('li').on('click', '.delete-btn', function(){
-                alert('You clicked the delete button button')
+                $(this).parent().parent().remove()
             });
 
         </script>
