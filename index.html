@@ -3,7 +3,7 @@
         <title>To Do list</title>
         <meta charset="utf-8">
         <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-        
+
         <style>
             html, body{
                 margin: 0;
@@ -15,15 +15,19 @@
                 margin: auto;
                 border-radius: 25px;
                 padding: 1%;
-                width: 78%; 
+                width: 78%;
                 min-height: 80%;
                 background-color: aliceblue;
             }
-            #left-input{
-                float:left;
+            #todo-input{
                 margin: auto;
                 width: 40%;
                 padding: 0 1%;
+            }
+            #todo-list{
+                padding: 0 1%;
+                margin: auto;
+                width: 50%;
             }
             #entryinput{
                 border-radius: 5px;
@@ -31,13 +35,6 @@
             }
             #submit{
                 margin: 2% 25%;
-                width: 50%;
-            }
-            #list{
-                border-left: solid 1px #ccc;
-                float: left;
-                padding: 0 1%;
-                margin: auto;
                 width: 50%;
             }
             ul{
@@ -52,50 +49,67 @@
                 width: 100%;
                 margin-left:0;
             }
-            @media only screen and (max-width: 550px){
-                #left-input{
-                    float:none;
-                    width: 100%;
-                }
-                #list{
-                    float: none;
-                    border-left:none;
-                    width: 100%;
-                }
-                li{
-                    width: 80%;
-                }
-                .sexy{
-                    color: green;
-                }
-            }
-        </style>    
+        </style>
     </head>
     <body>
-
         <main>
-            <div id="left-input">
-                <h1>Enter Things to do</h1>
+            <div id="todo-input">
+                <h1>To do</h1>
                 <input type="text" name="todoitem" id="entryinput">
                 <input type="submit" name="submit" id="submit">
             </div>
-            <div id="list">
-                <h3>To do items</h3>
+            <div id="todo-list">
                 <ul id="internalList">
-                    <li class="items">Stuff</li>
-                    <li class="items">Another Stuff</li>
+                    <li class="not-toggled">Stuff</li>
+                    <li class="not-toggled">Another Stuff</li>
                 </ul>
             </div>
         </main>
-        
+
         <script src="https://code.jquery.com/jquery-3.3.1.js" integrity="sha256-2Kok7MbOyxpgUVvAk/HJ2jigOSYS2auK4Pfzbm7uH60=" crossorigin="anonymous"></script>
         <script>
+
+            todo = []
+
+            //document ready
+            // cannot safely manip dom until it's loaded
+            $(function(){
+                alert("Back to working order")
+            });
+
+            //Add items to the to do list
             $("#submit").click(function(event){
-                $("ul").append($('<li class="items">').text($("#entryinput").val()))
+                $("ul").append($('<li>').text($("#entryinput").val()))
                 $("#entryinput").val('')
             });
+
+            //Function for what to do when a to do item is clicked on
             $('#internalList').on("click", "li", function(event){
-                alert('what the fuck')
+                var savedTodo = this.innerHTML
+
+                if (this.hasClass('not-toggled')){
+                    this.innerHTML = `<span>
+                                    <button class="complete-btn">
+                                        Complete
+                                    </button>
+                                    <button class="delete-btn">
+                                        Delete
+                                    </button>
+                                </span>`
+                    this.toggled == true
+                }else{
+                    this
+                }
+                preventDefault()
+            });
+
+            //COMPLETED-btn handling
+            $('li').on('click', '.complete-btn', function(){
+                alert('You clicked the complete button button')
+            });
+            //DELETE-btn handling
+            $('li').on('click', '.delete-btn', function(){
+                alert('You clicked the delete button button')
             });
 
         </script>
