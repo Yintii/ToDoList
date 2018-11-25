@@ -1,1 +1,2 @@
 # todolist
+This is a very simple to do list application made with Express and Jquery. Express isn't really needed here. I just added it.. You can construct the entire application with just the index.html file contents. It's contents are the styles for the website in the head, a main html area with the two sections, (input area and list area), and not even 20 lines of Jquery at the bottom with the scripts.
