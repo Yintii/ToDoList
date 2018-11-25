@@ -85,22 +85,15 @@
 
             //Function for what to do when a to do item is clicked on
             $('#internalList').on("click", "li", function(event){
-                var savedTodo = this.innerHTML
-
-                if (this.hasClass('not-toggled')){
-                    this.innerHTML = `<span>
-                                    <button class="complete-btn">
-                                        Complete
-                                    </button>
-                                    <button class="delete-btn">
-                                        Delete
-                                    </button>
-                                </span>`
-                    this.toggled == true
-                }else{
-                    this
-                }
-                preventDefault()
+                this.innerHTML = `<span>
+                                <button class="complete-btn">
+                                    Complete
+                                </button>
+                                <button class="delete-btn">
+                                    Delete
+                                </button>
+                            </span>`
+                    preventDefault()
             });
 
             //COMPLETED-btn handling
